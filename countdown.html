@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="viewport" content="width=device-width, initial-scale=1.0">
+        <title>4G Countdown 2024</title>
+    </head>
+    <body>
+        <center>
+        <h1><u><b>COUNTDOWN</b></u></h1>
+        <h3>Current date: <label id="time"></label></h3>
+        <table>
+            <tr>
+                <td>WA1:</td>
+                <td><label id="WA1"></label></td>
+                <td>T1 holiday:</td>
+                <td><label id="T1H"></label></td>
+                <td>DSA application:</td>
+                <td><label id="DSA"></label></td>
+            </tr>
+            <tr>
+                <td>WA2:</td>
+                <td><label id="WA2"></label></td>
+                <td>T2 holiday:</td>
+                <td><label id="T2H"></label></td>
+                <td>EAE application:</td>
+                <td><label id="EAE"></label></td>
+            </tr>
+            <tr>
+                <td>WA3:</td>
+                <td><label id="WA3"></label></td>
+                <td>T3 holiday:</td>
+                <td><label id="T3H"></label></td>
+            </tr>
+            <tr>
+                <td>O Levels &#x1F613:</td>
+                <td><label id="OLevel"></label></td>
+                <td>Freedom! &#x1F973:</td>
+                <td><label id="Freedom"></label></td>
+            </tr>
+        </table>
+        <br>
+        <p>DSA and EAE application countdown are approximates based on last year</p>
+        </center>
+
+        <style>
+            body{
+                background-color: black;
+            }
+            h1,h3,p{
+                color:white;
+            }
+            table{
+                padding: 10px 10px;
+                border: 1px solid white;
+            }
+            td{
+                color:white;
+                font-family:monospace;
+                font-size: 20px;
+                padding: 15px 15px;
+            }
+        </style>
+        <script>
+            function daysLeft(due){
+                if(due == "unknown"){
+                    return "unknown, for now :(";
+                }
+                var dueDay = parseInt(due.slice(0,2));
+                var dueMonth = parseInt(due.slice(3,5));
+
+                if((dueDay <= day) && (dueMonth <= month)){
+                    return "Done";
+                } else {
+                    if(month < dueMonth){
+                        //get days left in first month and days needed in last month, months in between calculated by prefix sum
+                        var left = totalDays[dueMonth-2] - totalDays[month-1];
+                        left += monthDays[month-1] - day;
+                        left += dueDay;
+                        return String(left) + " days";
+                    } else {
+                        return String(dueDay - day) + " days";
+                    }
+                }
+            }
+            const date = new Date();
+            const day = date.getDate();
+            const month = date.getMonth() + 1; //getMonth return January as 0
+            const year = date.getFullYear();
+            const monthDays = [31,29,31,30,31,30,31,31,30,31,30,31]
+            const totalDays = [31,60,91,121,152,182,213,244,274,305,335,366]; //prefix sum
+
+            //time
+            var d = String(day) + "/" + String(month) + "/" + String(year);
+            document.getElementById("time").innerHTML = d;
+            //WA and exams
+            document.getElementById("WA1").innerHTML = daysLeft("05-02");
+            document.getElementById("WA2").innerHTML = daysLeft("15-04");
+            document.getElementById("WA3").innerHTML = daysLeft("15-07");
+            document.getElementById("OLevel").innerHTML = daysLeft("unknown");
+            //term breaks
+            document.getElementById("T1H").innerHTML = daysLeft("08-03");
+            document.getElementById("T2H").innerHTML = daysLeft("24-05");
+            document.getElementById("T3H").innerHTML = daysLeft("30-08");
+            document.getElementById("Freedom").innerHTML = daysLeft("unknown");
+            //miscellaneous
+            document.getElementById("DSA").innerHTML = daysLeft("03-05");
+            document.getElementById("EAE").innerHTML = daysLeft("22-06");
+        </script>
+    </body>
+</html>
