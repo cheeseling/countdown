@@ -9,6 +9,8 @@
         <center>
         <h1><u><b>COUNTDOWN</b></u></h1>
         <h3>Current date: <label id="time"></label></h3>
+        <br>
+        <h3>Main Stuff</h3>
         <table>
             <tr>
                 <td>WA1:</td>
@@ -27,10 +29,12 @@
                 <td><label id="EAE"></label></td>
             </tr>
             <tr>
-                <td>WA3:</td>
-                <td><label id="WA3"></label></td>
+                <td>Prelim:</td>
+                <td><label id="Prelim"></label></td>
                 <td>T3 holiday:</td>
                 <td><label id="T3H"></label></td>
+                <td>Study Program:</td>
+                <td><label id="SP"></label></td>
             </tr>
             <tr>
                 <td>O Levels &#x1F613:</td>
@@ -39,6 +43,27 @@
                 <td><label id="Freedom"></label></td>
             </tr>
         </table>
+        
+        <h3>EL and MT Exams</h3>
+        <table>
+            <tr>
+                <td>MT Written Prelim:</td>
+                <td><label id="MTwP"></label></td>
+                <td>MT Intensive:</td>
+                <td><label id="MTI"></label></td>
+            </tr>
+            <tr>
+                <td>MT LC:</td>
+                <td><label id="MTl"></label></td>
+                <td>MT Written:</td>
+                <td><label id="MTw"></label></td>
+            </tr>
+            <tr>
+                <td>EL Oral Prelim:</td>
+                <td><label id="ELoP"></label></td>
+            </tr>
+        </table>
+
         <br>
         <p>DSA and EAE application countdown are approximates based on last year</p>
         </center>
@@ -47,7 +72,7 @@
             body{
                 background-color: black;
             }
-            h1,h3,p{
+            h1,h3,h4,p{
                 color:white;
             }
             table{
@@ -96,16 +121,24 @@
             //WA and exams
             document.getElementById("WA1").innerHTML = daysLeft("05-02");
             document.getElementById("WA2").innerHTML = daysLeft("15-04");
-            document.getElementById("WA3").innerHTML = daysLeft("15-07");
-            document.getElementById("OLevel").innerHTML = daysLeft("unknown");
+            document.getElementById("Prelim").innerHTML = daysLeft("29-07");
+            document.getElementById("OLevel").innerHTML = daysLeft("30-09");
             //term breaks
             document.getElementById("T1H").innerHTML = daysLeft("08-03");
             document.getElementById("T2H").innerHTML = daysLeft("24-05");
             document.getElementById("T3H").innerHTML = daysLeft("30-08");
-            document.getElementById("Freedom").innerHTML = daysLeft("unknown");
+            document.getElementById("Freedom").innerHTML = daysLeft("12-11");
             //miscellaneous
             document.getElementById("DSA").innerHTML = daysLeft("03-05");
             document.getElementById("EAE").innerHTML = daysLeft("22-06");
+            document.getElementById("SP").innerHTML = daysLeft("28-05");
+
+            //EL and MT
+            document.getElementById("MTwP").innerHTML = daysLeft("3-05");
+            document.getElementById("MTl").innerHTML = daysLeft("6-05");
+            document.getElementById("ELoP").innerHTML = daysLeft("20-05");
+            document.getElementById("MTI").innerHTML = daysLeft("20-05");
+            document.getElementById("MTw").innerHTML = daysLeft("27-05");
         </script>
     </body>
 </html>
