@@ -93,9 +93,28 @@
                 }
                 var dueDay = parseInt(due.slice(0,2));
                 var dueMonth = parseInt(due.slice(3,5));
+                //check if end day and month is xxxxx
+                var endDay = due.slice(6,8)
+                var endMonth = due.slice(9,12)
+                if(endDay == "xx" || endMonth == "xx"){
+                    //set end day and end month to forever
+                    endDay = 32;
+                    endMonth = 13;
+                }
 
-                if((dueDay <= day) && (dueMonth <= month)){
+                var started = false;
+                var ended = false;
+                if(((dueDay <= day) && (dueMonth <= month))){
+                    started = true;
+                }
+                if(((endDay <= day) && (endMonth <= month))){
+                    ended = true;
+                }
+
+                if(ended){
                     return "Done";
+                } else if(started){
+                    return "Ongoing";
                 } else {
                     if(month < dueMonth){
                         //get days left in first month and days needed in last month, months in between calculated by prefix sum
@@ -119,26 +138,26 @@
             var d = String(day) + "/" + String(month) + "/" + String(year);
             document.getElementById("time").innerHTML = d;
             //WA and exams
-            document.getElementById("WA1").innerHTML = daysLeft("05-02");
-            document.getElementById("WA2").innerHTML = daysLeft("15-04");
-            document.getElementById("Prelim").innerHTML = daysLeft("29-07");
-            document.getElementById("OLevel").innerHTML = daysLeft("30-09");
+            document.getElementById("WA1").innerHTML = daysLeft("05-02/08-03");
+            document.getElementById("WA2").innerHTML = daysLeft("15-04/24-05");
+            document.getElementById("Prelim").innerHTML = daysLeft("29-08/13-09");
+            document.getElementById("OLevel").innerHTML = daysLeft("30-09/12-11");
             //term breaks
-            document.getElementById("T1H").innerHTML = daysLeft("08-03");
-            document.getElementById("T2H").innerHTML = daysLeft("24-05");
-            document.getElementById("T3H").innerHTML = daysLeft("30-08");
-            document.getElementById("Freedom").innerHTML = daysLeft("12-11");
+            document.getElementById("T1H").innerHTML = daysLeft("08-03/17-03");
+            document.getElementById("T2H").innerHTML = daysLeft("24-05/02-06"); //idk how long june holiday is
+            document.getElementById("T3H").innerHTML = daysLeft("30-08/08-09");
+            document.getElementById("Freedom").innerHTML = daysLeft("12-11/xxxxx"); //i will not end freedom
             //miscellaneous
-            document.getElementById("DSA").innerHTML = daysLeft("03-05");
-            document.getElementById("EAE").innerHTML = daysLeft("22-06");
-            document.getElementById("SP").innerHTML = daysLeft("28-05");
+            document.getElementById("DSA").innerHTML = daysLeft("03-05/31-05");
+            document.getElementById("EAE").innerHTML = daysLeft("22-06/28-06");
+            document.getElementById("SP").innerHTML = daysLeft("28-05/02-06"); //to be edited
 
             //EL and MT
-            document.getElementById("MTwP").innerHTML = daysLeft("3-05");
-            document.getElementById("MTl").innerHTML = daysLeft("6-05");
-            document.getElementById("ELoP").innerHTML = daysLeft("20-05");
-            document.getElementById("MTI").innerHTML = daysLeft("20-05");
-            document.getElementById("MTw").innerHTML = daysLeft("27-05");
+            document.getElementById("MTwP").innerHTML = daysLeft("03-05/04-05");
+            document.getElementById("MTl").innerHTML = daysLeft("06-05/07-05");
+            document.getElementById("ELoP").innerHTML = daysLeft("20-05/21-05");
+            document.getElementById("MTI").innerHTML = daysLeft("20-05/21-05");
+            document.getElementById("MTw").innerHTML = daysLeft("27-05/28-05");
         </script>
     </body>
 </html>
